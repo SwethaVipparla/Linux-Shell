@@ -1,7 +1,7 @@
 # Magnush 
 
 <br>
-Magnush is the clone of the Bash shell. It is written in C, supports various features that we can see in a traditional Bash shell. 
+Magnush is the clone of the Bash shell. It is written in C, and supports various features that we can see in a traditional Bash shell. 
 
 &nbsp;
 
@@ -27,6 +27,7 @@ make
 ### 5. Input Commands
 Once the code is up and running, the commands for the included features can be executed. Multiple commands can also be entered in a single line, separated by `;`. Random spaces and tabs in commands are accounted for too.
 
+&nbsp;
 ## Features
 
 #### Command Prompt
@@ -35,6 +36,7 @@ Magnush has a command prompt that is similar to the one in a Bash shell. The pro
 The root directory is the one from which the shell is started.
 
  > Implemented in [prompt.c](https://github.com/SwethaVipparla/Magnush/blob/main/prompt.c)
+ &nbsp;
 
 ### Built-In Commands
 
@@ -63,7 +65,6 @@ echo <message>
 ```
 
  > Implemented in [echo.c](https://github.com/SwethaVipparla/Magnush/blob/main/echo.c)
-<br>
 
 #### 4.  ls
 Lists all the files and directories in the given directory. It handles multiple directories as arguments. Flags can be used to provide more functionalities to the command.  
@@ -89,6 +90,7 @@ These flags can be used together in different orders, while giving the output in
  > Implemented in [ls.c](https://github.com/SwethaVipparla/Magnush/blob/main/ls.c)
 <br>
 
+&nbsp;
 ### System Commands
 
 Commands other than the built-in commands are system commands. For example, `vim` and `gedit` are system commands.
@@ -121,6 +123,7 @@ or
  > Implemented in [bg.c](https://github.com/SwethaVipparla/Magnush/blob/main/bg.c)
 <br>
 
+&nbsp;
 ### Additional Commands
 
 #### 1. pinfo
@@ -149,4 +152,3 @@ history <no_of_commands>
 
  > Implemented in [history.c](https://github.com/SwethaVipparla/Magnush/blob/main/history.c)
 
- 
