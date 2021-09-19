@@ -36,7 +36,7 @@ void loadHistory()
 
     if (fp)
     {
-        char line[1000] = {0};
+        char line[1000] = "";
         int end = 0;
 
         while (fgets(line, sizeof(line), fp))
