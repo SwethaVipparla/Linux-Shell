@@ -1,0 +1,6 @@
+5
+cd
+cd ..
+cd 
+history
+ls
