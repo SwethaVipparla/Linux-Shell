@@ -11,7 +11,7 @@ Magnush is the clone of the Bash shell. It is written in C, and supports various
 ```
 git clone https://github.com/SwethaVipparla/Magnush.git
 ```
-### 2. Navigate to the Directory-Manager folder
+### 2. Navigate to the Magnush folder
 ```
 cd Magnush/
 ```
@@ -36,7 +36,6 @@ Magnush has a command prompt that is similar to the one in a Bash shell. The pro
 The root directory is the one from which the shell is started.
 
  > Implemented in [prompt.c](https://github.com/SwethaVipparla/Magnush/blob/main/prompt.c)
- &nbsp;
 
 ### Built-In Commands
 
@@ -90,7 +89,6 @@ These flags can be used together in different orders, while giving the output in
  > Implemented in [ls.c](https://github.com/SwethaVipparla/Magnush/blob/main/ls.c)
 <br>
 
-&nbsp;
 ### System Commands
 
 Commands other than the built-in commands are system commands. For example, `vim` and `gedit` are system commands.
@@ -105,7 +103,6 @@ If the given command is not found, an error is displayed.
 ```
 
  > Implemented in [fg.c](https://github.com/SwethaVipparla/Magnush/blob/main/fg.c)
-<br>
 
 #### 2. Background Processes
 To run processes in the background, enter an `&` after the command and the process will start up.
@@ -121,9 +118,6 @@ or
 ```
 
  > Implemented in [bg.c](https://github.com/SwethaVipparla/Magnush/blob/main/bg.c)
-<br>
-
-&nbsp;
 ### Additional Commands
 
 #### 1. pinfo
