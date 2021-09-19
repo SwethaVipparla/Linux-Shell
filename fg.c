@@ -15,7 +15,7 @@ void fg(char **argv)
     {
         if (execvp(argv[0], argv) < 0)
             printf(red "Command not found" reset ": " bold "%s\n" noBold, argv[0]);
-        exit(0);
+        return;
     }
     
     else

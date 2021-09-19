@@ -20,7 +20,7 @@ void tokenize(char *input)
 
 int main()
 {
-    printf(lightPurple "        Welcome to" lightPink " Magush!\n\n" reset);
+    printf(bold lightPurple "\n                     Welcome to" lightPink " Magnush!\n\n" reset noBold);
     getcwd(home, sizeof(home));
     loadHistory();
 

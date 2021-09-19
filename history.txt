@@ -1,6 +1,21 @@
-5
-cd
-cd ..
-cd 
-history
+32
+dfd
 ls
+cd ..
+gedit &
+pinfo
+vi
+gedit
+gedit &
+pinfo 456970
+pinfo
+history
+history 2
+cd Assignments/liteShell
+cd Assignments
+ls
+cd ..
+cd Assignments/Magnush
+ls
+ls -l
+ls -al
