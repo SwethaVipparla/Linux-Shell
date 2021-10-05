@@ -14,9 +14,16 @@ void tokenizeCommand(char *token)
         argv[len] = p;
         len++;
     }
-    checkRedirection(len, argv);
+
+    int stdoutSaved = dup(STDOUT_FILENO), stdinSaved = dup(STDIN_FILENO);
+
+    if(checkRedirection(token))
+        len = redirectInput(len, argv);
 
     commands(len, argv);
+
+    dup2(stdoutSaved, STDOUT_FILENO);
+    dup2(stdinSaved, STDIN_FILENO);
 }
 
 void commands(int len, char **argv)

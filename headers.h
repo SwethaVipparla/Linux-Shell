@@ -84,6 +84,7 @@ void loadHistory();
 void writeToHistory();
 
 // redirection.c
-int checkRedirection(int argc, char **argv);
+int checkRedirection(char *token);
+int redirectInput(int len, char **argv);
 
 #endif
