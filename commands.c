@@ -14,6 +14,7 @@ void tokenizeCommand(char *token)
         argv[len] = p;
         len++;
     }
+    checkRedirection(len, argv);
 
     commands(len, argv);
 }

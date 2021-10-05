@@ -83,4 +83,7 @@ void addCommandToHistory(char *command);
 void loadHistory();
 void writeToHistory();
 
+// redirection.c
+int checkRedirection(int argc, char **argv);
+
 #endif
