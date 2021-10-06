@@ -14,71 +14,60 @@ int checkRedirection(char *token)
         return 0;
 }
 
-int redirectInput(int len, char **argv)
+int fileStream(int fd, int stream)
 {
-    int i = 0, newLen = 0;
-    while(i++ <= len)
+    if(fd < 0)
     {
-        if (strcmp(argv[i], "<") == 0 && i + 1 <= len)
+        printf("Error: File not found\n");
+        return 0;
+    }
+    if (dup2(fd, stream) < 0)
+    {
+        printf("Error: Cannot redirect\n");
+        return 0;
+    }
+    close(fd);
+}
+
+int redirectIO(int len, char **argv)
+{
+    int newLen = 0;
+
+    for(int i = 0; i < len; i++)
+    {
+        if (strcmp(argv[i], "<") == 0 && i + 1 < len)
         {
-            int fd = open(argv[i + 1], O_RDONLY, 0644);
-            if(fd < 0)
-            {
-                printf("Error: File not found\n");
-                return 0;
-            }
-            if (dup2(fd, STDIN_FILENO) < 0)
-            {
-                printf("Error: Cannot redirect input\n");
-                return 0;
-            }
-            close(fd);
+            int fd = open(argv[i++ + 1], O_RDONLY, 0644);
+            fileStream(fd, STDIN_FILENO);
+            continue;
         }
 
-        else if (strcmp(argv[i], ">") == 0 && i + 1 <= len)
+        else if (strcmp(argv[i], ">") == 0 && i + 1 < len)
         {
-            int fd = open(argv[i + 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-            if(fd < 0)
-            {
-                printf("Error: File not found\n");
-                return 0;
-            }
-            if (dup2(fd, STDOUT_FILENO) < 0)
-            {
-                printf("Error: Cannot redirect output\n");
-                return 0;
-            }
-            close(fd);
+            int fd = open(argv[i++ + 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+            fileStream(fd, STDOUT_FILENO);
+            continue;
         }
 
-        else if(strcmp(argv[i], ">>") == 0 && i + 1 <= len)
+        else if(strcmp(argv[i], ">>") == 0 && i + 1 < len)
         {
-            int fd = open(argv[i + 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
-            if(fd < 0)
-            {
-                printf("Error: File not found\n");
-                return 0;
-            }
-            if (dup2(fd, STDOUT_FILENO) < 0)
-            {
-                printf("Error: Cannot redirect output\n");
-                return 0;
-            }
-            close(fd);
+            int fd = open(argv[i++ + 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
+            fileStream(fd, STDOUT_FILENO);
+            continue;
         }
 
         else 
         {
             strcpy(argv[newLen], argv[i]);
             newLen++;
+            continue;
         }
-        
-        i = newLen;
 
-        while(i++ <= len)
-            strcpy(argv[i], '\0');
-
-        return (newLen - 1);
+        return 0;
     }
+
+    for(int i = newLen; i < len; i++)
+        argv[i] = NULL;
+
+    return newLen;
 }
-    
