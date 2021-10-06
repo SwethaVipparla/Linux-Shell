@@ -1,6 +1,8 @@
 #include "headers.h"
 #include "colours.h"
 
+char username[10000], systemName[10000], cwd[10000], displayPrompt[40000];
+
 void prompt() 
 {
     getlogin_r(username, sizeof(username));

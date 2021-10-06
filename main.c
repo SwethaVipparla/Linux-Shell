@@ -1,6 +1,8 @@
 #include "headers.h"
 #include "colours.h"
 
+char home[10000];
+
 char* getInput()
 {
     size_t lineReadSize = 1000;

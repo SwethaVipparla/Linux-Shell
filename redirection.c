@@ -2,12 +2,13 @@
 
 int checkRedirection(char *token)
 {
-    char *input, *output;
+    char *input, *output, *append;
 
     input = strstr(token, "<");
     output = strstr(token, ">");
+    append = strstr(token, ">>");
 
-    if (input || output)
+    if (input != NULL || output != NULL || append != NULL)
         return 1;
     else 
         return 0;
