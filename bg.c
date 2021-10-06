@@ -2,6 +2,7 @@
 #include "colours.h"
 
 int jobCount;
+Jobs jobs[50];
 
 void handler(int signum)
 {

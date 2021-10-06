@@ -3,6 +3,10 @@
 void tokenizeCommand(char *token)
 {
     char *argv[1000], *p;
+    int flag = 0;
+
+    if(checkRedirection(token))
+        flag = 1;
 
     p = strtok_r(token, " \t\r", &token);
     argv[0] = p;
@@ -15,7 +19,18 @@ void tokenizeCommand(char *token)
         len++;
     }
 
-    commands(len, argv);
+    int stdoutSaved = dup(STDOUT_FILENO), stdinSaved = dup(STDIN_FILENO);
+
+    if(flag)
+        len = redirectIO(len, argv);
+
+    if(len)
+        commands(len, argv);
+    else
+        return;
+
+    dup2(stdoutSaved, STDOUT_FILENO);
+    dup2(stdinSaved, STDIN_FILENO);
 }
 
 void commands(int len, char **argv)

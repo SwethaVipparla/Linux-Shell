@@ -22,13 +22,13 @@
 /*------Variable Declarations------*/
 
 // main.c
-char home[10000];
+extern char home[10000];
 
 // prompt.c
-char username[10000], systemName[10000], cwd[10000], displayPrompt[40000];
+extern char username[10000], systemName[10000], cwd[10000], displayPrompt[40000];
 
 // cd.c
-char previousDirectory[10000], currentDirectory[10000];
+extern char previousDirectory[10000], currentDirectory[10000];
 
 // bg.c
 typedef struct jobs 
@@ -37,11 +37,11 @@ typedef struct jobs
     pid_t pid;
 } Jobs;
 
-Jobs jobs[50];
+extern Jobs jobs[50];
 
 // history.c
-int historyEntryCount;
-char entries[20][1000];
+extern int historyEntryCount;
+extern char entries[20][1000];
 
 /*------Function Definitions-----*/
 
@@ -82,5 +82,9 @@ void history(int argc, char **argv);
 void addCommandToHistory(char *command);
 void loadHistory();
 void writeToHistory();
+
+// redirection.c
+int checkRedirection(char *token);
+int redirectIO(int len, char **argv);
 
 #endif

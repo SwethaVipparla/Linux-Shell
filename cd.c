@@ -1,6 +1,8 @@
 #include "headers.h"
 #include "colours.h"
 
+char previousDirectory[10000], currentDirectory[10000];
+
 void cd(int len, char **argv)
 {
     getcwd(currentDirectory, sizeof(currentDirectory));

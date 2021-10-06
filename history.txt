@@ -1,11 +1,21 @@
-10
+700
+cat new.txt
+echo ad > output.txt
+sort < output.txt > new.txt
+cat new.txt
+ls
+sort < README.md > a.txt
+sort <
+echo addd <
+echo dfsf >
+cat >
+cat a.txt
+cd
 cd ..
-cd ~
+echo hdfdifj > a.txt
+cat a.txt
+sort < a.txt > new.txt
+cat new.txt
+s
 ls
 ls -al
-ls ../ -al
-gedit &
-pinfo
-repeat 4 sleep 1
-history
-history 5

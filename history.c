@@ -3,6 +3,7 @@
 
 #include "headers.h"
 
+char entries[20][1000];
 char historyFile[2000];
 int historyEntryCount = 0;
 
