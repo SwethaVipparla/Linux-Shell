@@ -1,11 +1,11 @@
-1726
+1727
 gedit &
 jobs
 sleep 10 &
 gedit &
 jobs
 jobs
-sleep 50 &
+jobs -r -d
 gedit &
 jobs
 jobs -r
