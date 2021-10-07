@@ -64,6 +64,9 @@ void commands(int len, char **argv)
     else if (strcmp(argv[len - 1], "&") == 0 || argv[len - 1][strlen(argv[len - 1]) - 1] == '&')
         bg(len, argv);
 
+    else if (strcmp(argv[0], "jobs") == 0)
+        job(len, argv);
+
     else if (strcmp(argv[0], "exit") == 0)
         exit(0);
 

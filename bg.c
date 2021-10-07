@@ -4,6 +4,8 @@
 int jobCount;
 Jobs jobs[50];
 
+int num = 0;
+
 void handler(int signum)
 {
     int status;
@@ -12,7 +14,7 @@ void handler(int signum)
     if (pid > 0)
     {
         char message[200];
-        int i = 0;
+        int i = 0, flag = 0;
 
         while(i < jobCount)
         {
@@ -23,8 +25,9 @@ void handler(int signum)
                 {
                     jobs[j].pid = jobs[j + 1].pid;
                     strcpy(jobs[j].jobName, jobs[j + 1].jobName);
+                    jobs[j].num = jobs[j + 1].num;
                 }
-
+                flag = 1;
                 jobCount--;
                 break;
             }
@@ -32,7 +35,7 @@ void handler(int signum)
             i++;
         }
 
-        if (WIFEXITED(status) && !WEXITSTATUS(status))
+        if (WIFEXITED(status) && !WEXITSTATUS(status) && flag)
             fprintf(stderr, bold "%s " noBold green "with pid " reset bold "%d " noBold green "exited normally\n" reset, message, pid);
 
         else
@@ -65,6 +68,7 @@ void bg(int len, char **argv)
 
     else if (pid == 0)
     {
+        setpgid(0, 0);
         if (execvp(argv[0], argv) < 0)
             printf(red "Command not found" reset ": " bold "%s\n" noBold, argv[0]);
 
@@ -75,9 +79,15 @@ void bg(int len, char **argv)
     {
         signal(SIGCHLD, handler);
         strcpy(jobs[jobCount].jobName, argv[0]); 
+        for(int i = 1; i < len-1; i++)
+        {
+            strcat(jobs[jobCount].jobName, " ");
+            strcat(jobs[jobCount].jobName, argv[i]);
+        }
+        jobs[jobCount].num = ++num;
         jobs[jobCount].pid = pid;
         jobCount++;
-        printf("[%d] %d\n", jobCount, pid); 
+        printf("%d %s\n", pid, argv[0]); 
     }
 
     return;

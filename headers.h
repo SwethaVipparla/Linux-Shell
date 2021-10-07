@@ -33,11 +33,13 @@ extern char previousDirectory[10000], currentDirectory[10000];
 // bg.c
 typedef struct jobs 
 {
+    int num;
     char jobName[100];
     pid_t pid;
 } Jobs;
 
 extern Jobs jobs[50];
+extern int jobCount;
 
 // history.c
 extern int historyEntryCount;
@@ -91,5 +93,8 @@ int fileStream(int fd, int stream);
 // pipe.c
 int checkPipe(char *token);
 void piping(char *token, int stdoutSaved, int stdinSaved);
+
+// jobs.c
+void job(int len, char **argv);
 
 #endif
