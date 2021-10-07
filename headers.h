@@ -86,5 +86,10 @@ void writeToHistory();
 // redirection.c
 int checkRedirection(char *token);
 int redirectIO(int len, char **argv);
+int fileStream(int fd, int stream);
+
+// pipe.c
+int checkPipe(char *token);
+void piping(char *token, int stdoutSaved, int stdinSaved);
 
 #endif

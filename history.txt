@@ -1,21 +1,21 @@
-700
-cat new.txt
-echo ad > output.txt
-sort < output.txt > new.txt
-cat new.txt
-ls
-sort < README.md > a.txt
-sort <
-echo addd <
-echo dfsf >
-cat >
-cat a.txt
-cd
-cd ..
-echo hdfdifj > a.txt
-cat a.txt
-sort < a.txt > new.txt
-cat new.txt
-s
-ls
-ls -al
+1618
+1600
+1601
+1602
+cat < a | wc -l > e
+cat e
+cat sample2.txt | head -7 | tail -5
+cat < README.md | wc -l > a
+cat < README.md | wc -l > e
+cat < README.md | wc -l > a
+cat a
+cat README.md | head -7 | tail -5
+cat < README.md | wc -l > a
+cat a
+quit
+cat < README.md | wc -l > a
+cat a
+cat < README.md | wc -l > a
+cat a
+1598
+1599

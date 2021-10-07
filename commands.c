@@ -4,6 +4,13 @@ void tokenizeCommand(char *token)
 {
     char *argv[1000], *p;
     int flag = 0;
+    int stdoutSaved = dup(STDOUT_FILENO), stdinSaved = dup(STDIN_FILENO);
+
+    if(checkPipe(token))
+    {
+        piping(token, stdoutSaved, stdinSaved);
+        return;
+    }
 
     if(checkRedirection(token))
         flag = 1;
@@ -19,8 +26,6 @@ void tokenizeCommand(char *token)
         len++;
     }
 
-    int stdoutSaved = dup(STDOUT_FILENO), stdinSaved = dup(STDIN_FILENO);
-
     if(flag)
         len = redirectIO(len, argv);
 
@@ -29,8 +34,8 @@ void tokenizeCommand(char *token)
     else
         return;
 
-    dup2(stdoutSaved, STDOUT_FILENO);
-    dup2(stdinSaved, STDIN_FILENO);
+    fileStream(stdoutSaved, STDOUT_FILENO);  
+    fileStream(stdinSaved, STDIN_FILENO);
 }
 
 void commands(int len, char **argv)
