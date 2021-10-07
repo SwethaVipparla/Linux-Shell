@@ -67,6 +67,9 @@ void commands(int len, char **argv)
     else if (strcmp(argv[0], "jobs") == 0)
         job(len, argv);
 
+    else if (strcmp(argv[0], "sig") == 0)
+        sig(len, argv);
+
     else if (strcmp(argv[0], "exit") == 0)
         exit(0);
 
