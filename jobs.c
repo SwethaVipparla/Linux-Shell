@@ -1,4 +1,5 @@
 #include "headers.h"
+#include "colours.h"
 
 Jobs newarr[50];
 
@@ -21,7 +22,7 @@ int setFlags(int len, char **argv)
 
         else
         {
-            perror("Incorrect argument");
+            printf(red "jobs: Incorrect argument\n" reset);
             return 0;
         }
     }
@@ -35,7 +36,7 @@ int setFlags(int len, char **argv)
 
             else
             {
-                perror("Incorrect argument");
+                printf(red "jobs: Incorrect argument\n" reset);
                 return 0;
             }
         }
@@ -44,7 +45,7 @@ int setFlags(int len, char **argv)
 
     else if (len > 3)
     {
-        printf("Too many arguments\n");
+        printf(red "jobs: Too many arguments\n" reset);
         return 0;
     }
 }
@@ -74,7 +75,7 @@ void job(int len, char **argv)
 
         if (!f)
         {
-            perror("Error");
+            perror(red "Error" reset);
             return;
         }
 
