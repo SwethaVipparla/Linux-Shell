@@ -62,7 +62,7 @@ void commands(int len, char **argv)
         history(len, argv);
 
     else if (strcmp(argv[len - 1], "&") == 0 || argv[len - 1][strlen(argv[len - 1]) - 1] == '&')
-        bg(len, argv);
+        background(len, argv);
 
     else if (strcmp(argv[0], "jobs") == 0)
         job(len, argv);
@@ -70,11 +70,17 @@ void commands(int len, char **argv)
     else if (strcmp(argv[0], "sig") == 0)
         sig(len, argv);
 
+    else if (strcmp(argv[0], "fg") == 0)
+        fg(len, argv);
+
+    else if (strcmp(argv[0], "bg") == 0)
+        bg(len, argv);
+
     else if (strcmp(argv[0], "exit") == 0)
         exit(0);
 
     else
-        fg(argv);
+        foreground(argv);
 
     writeToHistory();
 }   
