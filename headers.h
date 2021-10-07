@@ -97,4 +97,7 @@ void piping(char *token, int stdoutSaved, int stdinSaved);
 // jobs.c
 void job(int len, char **argv);
 
+// sig.c
+void sig(int len, char **argv);
+
 #endif

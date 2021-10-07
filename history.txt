@@ -1,4 +1,4 @@
-1727
+1737
 gedit &
 jobs
 sleep 10 &
@@ -6,16 +6,16 @@ gedit &
 jobs
 jobs
 jobs -r -d
+sleep 50 &
+jobs
+sig 1 9
+
+sleep 60 &
+jobs
 gedit &
+sig 2 9
 jobs
-jobs -r
-jobs
-jobs
-sleep 10 &
-gedit &
-jobs
-jobs -r
-jobs -s
+sig 3 9
 jobs -r -s
 jobs
 sleep 10 &
