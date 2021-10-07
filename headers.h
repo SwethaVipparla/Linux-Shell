@@ -66,11 +66,11 @@ void echo(int len, char **argv);
 // ls.c
 void ls(int argc, char **argv);
 
-// fg.c
-void fg(char **token);
+// foreground.c
+void foreground(char **token);
 
-// bg.c
-void bg(int len, char **argv);
+// backgrouond.c
+void background(int len, char **argv);
 
 // pinfo.c
 void pinfo(int argc, char **argv);
@@ -99,5 +99,14 @@ void job(int len, char **argv);
 
 // sig.c
 void sig(int len, char **argv);
+
+// processes.c
+void process(int len, char **argv, int indicator);
+
+// fg.c
+void fg(int len, char **argv);
+
+// bg.c
+void bg(int len, char **argv);
 
 #endif
