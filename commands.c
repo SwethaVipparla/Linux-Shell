@@ -80,7 +80,7 @@ void commands(int len, char **argv)
         exit(0);
 
     else
-        foreground(argv);
+        foreground(len, argv);
 
     writeToHistory();
 }   

@@ -77,7 +77,6 @@ void background(int len, char **argv)
 
     else
     {
-        signal(SIGCHLD, handler);
         strcpy(jobs[jobCount].jobName, argv[0]);
         for (int i = 1; i < len - 1; i++)
         {

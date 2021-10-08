@@ -2,12 +2,15 @@
 #include "colours.h"
 
 char home[10000];
+char *stream;
+pid_t shellPID;
 
 char* getInput()
 {
     size_t lineReadSize = 1000;
     char *lineRead = malloc(sizeof(char) *lineReadSize);
-    getline(&lineRead, &lineReadSize, stdin);
+    stream = fgets(lineRead, lineReadSize, stdin);
+
     lineRead[strcspn(lineRead, "\n")] = 0; // remove newline
     return lineRead;
 }
@@ -26,10 +29,24 @@ int main()
     getcwd(home, sizeof(home));
     loadHistory();
 
+    currentID = -1;
+    shellPID = getpid();
+
+    signal(SIGTSTP, ctrlz);
+    signal(SIGINT, ctrlc);
+
+    signal(SIGCHLD, handler);
+
     while (1)
     {
         prompt();
         char *input = getInput();
+
+        if(stream == NULL)
+        {
+            printf("\n");
+            return 0;
+        }
 
         addCommandToHistory(input);
         tokenize(input);
