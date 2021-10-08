@@ -1,21 +1,21 @@
-1776
-fg 2
-gedit &
-fg 1
-sleep 50 &
+3638
+3620
+3621
+sleep &
+sleep 10
+sleep 10
+sleep 10
 jobs
-sleep 10 &
-gedit &
+sleep 10
+vim &
+vim &
+sleep 5
 jobs
-fg 1
-fg 2
-sleep 10 &
-gedit &
+vim &
+sleep 1000
 jobs
-jobs
-bg 2
-bg 1
-jobs
-fg 1
-gedit &
-jobs
+sleep 10
+sleep10
+sleep 10
+3618
+3619

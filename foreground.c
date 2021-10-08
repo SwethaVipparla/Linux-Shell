@@ -1,7 +1,10 @@
 #include "headers.h"
 #include "colours.h"
 
-void foreground(char **argv)
+ pid_t currentID;
+ char currentJob[1000];
+
+void foreground(int len, char **argv)
 {
     pid_t pid, wpid;
     int status;
@@ -20,10 +23,18 @@ void foreground(char **argv)
     
     else
     {
-        do
+        currentID = pid;
+        
+        strcpy(currentJob, argv[0]);
+        int status;
+
+        for (int i = 1; i < len - 1; i++)
         {
-            wpid = waitpid(pid, &status, WUNTRACED);
-        } while (!WIFEXITED(status) && !WIFSIGNALED(status));
+            strcat(currentJob, " ");
+            strcat(currentJob, argv[i]);
+        }
+
+        wpid = waitpid(pid, &status, WUNTRACED);
     }
 }
 

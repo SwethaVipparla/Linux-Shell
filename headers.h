@@ -23,6 +23,7 @@
 
 // main.c
 extern char home[10000];
+extern pid_t shellPID;
 
 // prompt.c
 extern char username[10000], systemName[10000], cwd[10000], displayPrompt[40000];
@@ -44,6 +45,13 @@ extern int jobCount;
 // history.c
 extern int historyEntryCount;
 extern char entries[20][1000];
+
+// foreground.c
+extern pid_t currentID;
+extern char currentJob[1000];
+
+// backgound.c
+extern int num;
 
 /*------Function Definitions-----*/
 
@@ -67,10 +75,11 @@ void echo(int len, char **argv);
 void ls(int argc, char **argv);
 
 // foreground.c
-void foreground(char **token);
+void foreground(int len, char **token);
 
 // backgrouond.c
 void background(int len, char **argv);
+void handler(int sig);
 
 // pinfo.c
 void pinfo(int argc, char **argv);
@@ -108,5 +117,9 @@ void fg(int len, char **argv);
 
 // bg.c
 void bg(int len, char **argv);
+
+// signals.c
+void ctrlz(int sig);
+void ctrlc(int sig);
 
 #endif
