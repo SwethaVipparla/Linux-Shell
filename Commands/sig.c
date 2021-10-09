@@ -1,8 +1,8 @@
-#include "headers.h"
-#include "sig.h"
+#include "../headers.h"
+#include "../colours.h"
+#include "../utils.h"
 #include "process.h"
-#include "utils.h"
-#include "colours.h"
+#include "sig.h"
 
 void sig(int len, char **argv)
 {

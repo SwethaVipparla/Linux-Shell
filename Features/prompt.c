@@ -1,7 +1,7 @@
-#include "headers.h"
+#include "../headers.h"
+#include "../main.h"
+#include "../colours.h"
 #include "prompt.h"
-#include "main.h"
-#include "colours.h"
 
 char username[10000], systemName[10000], cwd[10000], displayPrompt[40000];
 

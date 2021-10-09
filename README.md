@@ -7,24 +7,18 @@ Magnush is the clone of the Bash shell. It is written in C, and supports various
 
 ## Instructions To Run The Shell
 
-### 1. Clone the repo onto your local machine
+#### 1. Clone the repo and navigate to the folder
 ```
 git clone https://github.com/SwethaVipparla/Magnush.git
-```
-### 2. Navigate to the Magnush folder
-```
 cd Magnush/
 ```
-### 3. Compile the code using Makefile
+#### 2. Compile the code and run the executable
 ```
 make
-```
-### 4. Run the executable
-```
 ./Magnush
 ```
 
-### 5. Input Commands
+#### 3. Input Commands
 Once the code is up and running, the commands for the included features can be executed. Multiple commands can also be entered in a single line, separated by `;`. Random spaces and tabs in commands are accounted for too.
 
 &nbsp;
@@ -36,6 +30,17 @@ Magnush has a command prompt that is similar to the one in a Bash shell. The pro
 The root directory is the one from which the shell is started.
 
  > Implemented in [prompt.c](https://github.com/SwethaVipparla/Magnush/blob/main/prompt.c)
+
+#### Piping
+
+Magnush supports piping with commands. One or more commands can be piped, and any number of pipes are supported.
+
+```
+cat <filename.txt> | head -7 | tail -5
+```
+
+ > Implemented in [prompt.c](https://github.com/SwethaVipparla/Magnush/blob/main/prompt.c)
+
 
 ### Built-In Commands
 

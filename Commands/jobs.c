@@ -1,7 +1,7 @@
-#include "headers.h"
-#include "jobs.h"
+#include "../headers.h"
+#include "../colours.h"
 #include "process.h"
-#include "colours.h"
+#include "jobs.h"
 
 Jobs newarr[50];
 
@@ -9,7 +9,7 @@ int compare(const void *a, const void *b)
 {
     Jobs *ja = (Jobs *)a;
     Jobs *jb = (Jobs *)b;
-    
+
     return strcmp(ja->jobName, jb->jobName);
 }
 

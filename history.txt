@@ -1,21 +1,21 @@
-3792
-sleep 5 &
-
-jobs
-sleep 10
-jobs
-sleep 10 &
-jobs
-fg 1
-jobs
-gedit &
-sleep 10
-jobs
-sleep 5 &
-ssleep 100
-sleep 100 &; sleep 200 &; sleep 300&
+3869
+vim a
+slee 5
 sleep 5
-jobs
-sleep 100 &; sleep 200 &; sleep 300&
-sleep 10
-jobs
+sleep 5
+vim a
+gedit a
+clear
+clear -x
+sleep 5
+clear
+ls -al
+sleep 5
+sleep 10 &
+fg 2
+sleep 5
+clear
+ls -al
+vim
+ls -al
+vim

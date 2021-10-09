@@ -1,9 +1,9 @@
 #include "headers.h"
-#include "utils.h"
-#include "redirection.h"
-#include "pipe.h"
 #include "commands.h"
 #include "colours.h"
+#include "utils.h"
+#include "Features/redirection.h"
+#include "Features/pipe.h"
 
 void tokenizeCommand(char *token)
 {
@@ -43,7 +43,6 @@ void tokenizeCommand(char *token)
     fileStream(stdinSaved, STDIN_FILENO);
 }
 
-
 int strToInt(char *str)
 {
     int num = 0;
@@ -67,15 +66,17 @@ int strToInt(char *str)
 
 int fileStream(int fd, int stream)
 {
-    if(fd < 0)
+    if (fd < 0)
     {
         printf("Error: File not found\n");
         return 0;
     }
+
     if (dup2(fd, stream) < 0)
     {
         printf("Error: Cannot redirect\n");
         return 0;
     }
+
     close(fd);
 }

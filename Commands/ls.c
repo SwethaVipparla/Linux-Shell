@@ -1,7 +1,7 @@
-#include "headers.h"
+#include "../headers.h"
+#include "../colours.h"
+#include "../main.h"
 #include "ls.h"
-#include "main.h"
-#include "colours.h"
 
 void printDetails(char *path, char *dName)
 {
@@ -56,7 +56,7 @@ void getFiles(int count, char *directory, int lFlag, int aFlag)
     lstat(directory, &stats);
 
     int file = 1;
-    
+
     if ((mydir = opendir(directory)) == NULL)
     {
         if (access(directory, F_OK))

@@ -1,6 +1,6 @@
-#include "headers.h"
+#include "../headers.h"
+#include "../utils.h"
 #include "redirection.h"
-#include "utils.h"
 
 int checkRedirection(char *token)
 {

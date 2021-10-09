@@ -1,9 +1,9 @@
-#include "headers.h"
+#include "../headers.h"
+#include "../colours.h"
+#include "../main.h"
+#include "../Commands/process.h"
 #include "signals.h"
-#include "main.h"
-#include "process.h"
 #include "prompt.h"
-#include "colours.h"
 
 void ctrlz(int sig)
 {
@@ -25,7 +25,7 @@ void ctrlz(int sig)
         jobs[jobCount].num = ++num;
         jobCount++;
 
-        return;
+        printf("\r");
     }
 
     return;
@@ -42,6 +42,8 @@ void ctrlc(int sig)
     {
         if (kill(currentID, SIGINT) == -1)
             perror(red "kill" reset);
+
+        printf("\r");
     }
 
     return;

@@ -1,8 +1,8 @@
-#include "headers.h"
+#include "../headers.h"
+#include "../colours.h"
+#include "../utils.h"
+#include "../main.h"
 #include "pinfo.h"
-#include "main.h"
-#include "utils.h"
-#include "colours.h"
 
 void pinfo(int len, char **argv)
 {
@@ -41,7 +41,7 @@ void pinfo(int len, char **argv)
 
     int fgFlag = strcmp(flag1, flag2);
     char mpath[1000];
-    
+
     sprintf(mpath, "/proc/%d/statm", pid);
     fp = fopen(mpath, "r");
 

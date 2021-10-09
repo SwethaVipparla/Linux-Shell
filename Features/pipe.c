@@ -1,7 +1,7 @@
-#include "headers.h"
+#include "../headers.h"
+#include "../colours.h"
+#include "../utils.h"
 #include "pipe.h"
-#include "utils.h"
-#include "colours.h"
 
 int checkPipe(char *token)
 {

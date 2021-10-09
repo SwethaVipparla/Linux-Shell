@@ -1,7 +1,7 @@
-#include "headers.h"
+#include "../headers.h"
+#include "../colours.h"
+#include "../main.h"
 #include "cd.h"
-#include "main.h"
-#include "colours.h"
 
 char previousDirectory[10000], currentDirectory[10000];
 

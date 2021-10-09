@@ -1,6 +1,6 @@
-#include "headers.h"
+#include "../headers.h"
+#include "../colours.h"
 #include "process.h"
-#include "colours.h"
 
 Jobs jobs[50];
 int jobCount;
@@ -21,10 +21,10 @@ void process(int len, char **argv, int isBg)
     else if (pid == 0)
     {
         setpgid(0, 0);
-        
+
         if (execvp(argv[0], argv) < 0)
             printf(red "Command not found" reset ": " bold "%s\n" noBold, argv[0]);
-        
+
         return;
     }
 
@@ -33,9 +33,7 @@ void process(int len, char **argv, int isBg)
         if (!isBg)
         {
             currentID = pid;
-
             strcpy(currentJob, argv[0]);
-            int status;
 
             for (int i = 1; i < len - 1; i++)
             {
@@ -43,6 +41,7 @@ void process(int len, char **argv, int isBg)
                 strcat(currentJob, argv[i]);
             }
 
+            int status;
             wpid = waitpid(pid, &status, WUNTRACED);
         }
 

@@ -1,8 +1,8 @@
-#include "headers.h"
+#include "../headers.h"
+#include "../commands.h"
+#include "../colours.h"
+#include "../utils.h"
 #include "repeat.h"
-#include "utils.h"
-#include "commands.h"
-#include "colours.h"
 
 void repeat(int len, char **argv)
 {

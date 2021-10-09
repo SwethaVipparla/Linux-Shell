@@ -1,2 +1,2 @@
-magnush: *.c
-	gcc -o magnush *.c
+magnush: 
+	gcc -g *.c Commands/* Features/* -o magnush

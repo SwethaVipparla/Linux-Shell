@@ -1,8 +1,8 @@
-#include "headers.h"
-#include "fgbg.h"
+#include "../headers.h"
+#include "../colours.h"
+#include "../utils.h"
 #include "process.h"
-#include "utils.h"
-#include "colours.h"
+#include "fgbg.h"
 
 void fgbg(int len, char **argv, int isFg)
 {
@@ -34,13 +34,8 @@ void fgbg(int len, char **argv, int isFg)
 
             if (isFg)
             {
-
                 strcpy(currentJob, jobs[i].jobName);
                 currentID = pid;
-
-                signal(SIGTTIN, SIG_IGN);
-                signal(SIGTTOU, SIG_IGN);
-                tcsetpgrp(STDIN_FILENO, pid);
 
                 for (int j = i; j < jobCount - 1; j++)
                 {
@@ -60,10 +55,6 @@ void fgbg(int len, char **argv, int isFg)
 
             if (isFg)
             {
-                tcsetpgrp(STDIN_FILENO, getpgrp());
-                signal(SIGTTIN, SIG_DFL);
-                signal(SIGTTOU, SIG_DFL);
-
                 int status;
                 waitpid(pid, &status, WUNTRACED);
             }

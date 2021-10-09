@@ -1,8 +1,8 @@
-#include "headers.h"
+#include "../headers.h"
+#include "../colours.h"
+#include "../utils.h"
+#include "../main.h"
 #include "history.h"
-#include "main.h"
-#include "utils.h"
-#include "colours.h"
 
 char entries[20][1000];
 char historyFile[2000];
@@ -24,7 +24,7 @@ void writeToHistory()
 
     int i = 0;
 
-    while(i < limit)
+    while (i < limit)
         fprintf(fp, "%s\n", entries[i++]);
 
     fclose(fp);
@@ -45,13 +45,13 @@ void loadHistory()
         {
             line[strcspn(line, "\n")] = 0;
 
-            if(end)
+            if (end)
             {
                 strcpy(entries[end - 1], line);
                 end++;
             }
 
-            else 
+            else
             {
                 historyEntryCount = strToInt(line);
                 end = 1;
@@ -76,6 +76,7 @@ void history(int len, char **argv)
     }
 
     int num = 10;
+
     if (len == 2)
         num = strToInt(argv[1]) > 20 ? 20 : strToInt(argv[1]);
 
