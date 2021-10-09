@@ -20,8 +20,11 @@ void process(int len, char **argv, int isBg)
 
     else if (pid == 0)
     {
+        setpgid(0, 0);
+        
         if (execvp(argv[0], argv) < 0)
             printf(red "Command not found" reset ": " bold "%s\n" noBold, argv[0]);
+        
         return;
     }
 

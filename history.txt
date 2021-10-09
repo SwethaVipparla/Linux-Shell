@@ -1,21 +1,21 @@
-3768
-replay -command sleep 1 & -interval 1 -period 3
-sleep 100 &; sleep 200 &; sleep 300 &
+3792
+sleep 5 &
+
+jobs
+sleep 10
+jobs
+sleep 10 &
+jobs
+fg 1
+jobs
+gedit &
+sleep 10
+jobs
+sleep 5 &
+ssleep 100
+sleep 100 &; sleep 200 &; sleep 300&
 sleep 5
 jobs
-sleep 100 &; sleep 200 &; sleep 300 &
-sleep 5
+sleep 100 &; sleep 200 &; sleep 300&
+sleep 10
 jobs
-replay -command sleep 1 & -interval 1 -period 2
-replay -com ls -interval 1 -period 2
-replay -command ls interval 1 -period 2
-replay -command gedit & -interval 1 -period 2
-replay -command sleep 1 & -interval 1 -period 2
-replay -command gedit & -interval 1 -period 2
-replay -command gedit & -interval 1 -period 2
-replay -command gedit & -interval 1 -period 2
-replay -command sleep 1 & -interval 1 -period 2
-replay -command echo waazup -interval 1 -period 2
-replay -command sleep 1 & -interval 3 -period 3
-replay -command sleep 1 & -interval 3 -period 
-replay -command sleep 1 & -interval 3 -period 3

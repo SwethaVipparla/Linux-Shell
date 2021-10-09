@@ -29,14 +29,18 @@ void fgbg(int len, char **argv, int isFg)
         if (jobs[i].num == inputJobNumber)
         {
             flag = 1;
-            
+
             int pid = jobs[i].pid;
 
-            if(isFg)
+            if (isFg)
             {
+
                 strcpy(currentJob, jobs[i].jobName);
-                
                 currentID = pid;
+
+                signal(SIGTTIN, SIG_IGN);
+                signal(SIGTTOU, SIG_IGN);
+                tcsetpgrp(STDIN_FILENO, pid);
 
                 for (int j = i; j < jobCount - 1; j++)
                 {
@@ -54,8 +58,12 @@ void fgbg(int len, char **argv, int isFg)
                 return;
             }
 
-            if(isFg)
+            if (isFg)
             {
+                tcsetpgrp(STDIN_FILENO, getpgrp());
+                signal(SIGTTIN, SIG_DFL);
+                signal(SIGTTOU, SIG_DFL);
+
                 int status;
                 waitpid(pid, &status, WUNTRACED);
             }
