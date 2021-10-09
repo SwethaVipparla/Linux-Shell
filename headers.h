@@ -1,8 +1,6 @@
 #ifndef HEADERS_H
 #define HEADERS_H
 
-/*------Headers------*/
-
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
@@ -18,108 +16,5 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <time.h>
-
-/*------Variable Declarations------*/
-
-// main.c
-extern char home[10000];
-extern pid_t shellPID;
-
-// prompt.c
-extern char username[10000], systemName[10000], cwd[10000], displayPrompt[40000];
-
-// cd.c
-extern char previousDirectory[10000], currentDirectory[10000];
-
-// bg.c
-typedef struct jobs 
-{
-    int num;
-    char jobName[100];
-    pid_t pid;
-} Jobs;
-
-extern Jobs jobs[50];
-extern int jobCount;
-
-// history.c
-extern int historyEntryCount;
-extern char entries[20][1000];
-
-// foreground.c
-extern pid_t currentID;
-extern char currentJob[1000];
-
-// backgound.c
-extern int num;
-
-/*------Function Definitions-----*/
-
-// prompt.c
-void prompt();
-
-// commands.c
-void tokenizeCommand(char *token);
-void commands(int len, char **argv);
-
-// cd.c
-void cd(int len, char **argv);
-
-// pwd.c
-void pwd();
-
-// echo.c
-void echo(int len, char **argv);
-
-// ls.c
-void ls(int argc, char **argv);
-
-// foreground.c
-void foreground(int len, char **token);
-
-// backgrouond.c
-void background(int len, char **argv);
-void handler(int sig);
-
-// pinfo.c
-void pinfo(int argc, char **argv);
-
-// repeat.c
-int strToInt(char *str);
-void repeat(int len, char **argv);
-
-// history.c
-void history(int argc, char **argv);
-void addCommandToHistory(char *command);
-void loadHistory();
-void writeToHistory();
-
-// redirection.c
-int checkRedirection(char *token);
-int redirectIO(int len, char **argv);
-int fileStream(int fd, int stream);
-
-// pipe.c
-int checkPipe(char *token);
-void piping(char *token, int stdoutSaved, int stdinSaved);
-
-// jobs.c
-void job(int len, char **argv);
-
-// sig.c
-void sig(int len, char **argv);
-
-// processes.c
-void process(int len, char **argv, int indicator);
-
-// fg.c
-void fg(int len, char **argv);
-
-// bg.c
-void bg(int len, char **argv);
-
-// signals.c
-void ctrlz(int sig);
-void ctrlc(int sig);
 
 #endif

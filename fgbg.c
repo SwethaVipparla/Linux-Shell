@@ -1,7 +1,10 @@
 #include "headers.h"
+#include "fgbg.h"
+#include "process.h"
+#include "utils.h"
 #include "colours.h"
 
-void fg(int len, char **argv)
+void fgbg(int len, char **argv, int isFg)
 {
     if (len != 2)
     {
@@ -26,17 +29,24 @@ void fg(int len, char **argv)
         if (jobs[i].num == inputJobNumber)
         {
             flag = 1;
-            char *jobName = jobs[i].jobName;
+            
             int pid = jobs[i].pid;
 
-            for (int j = i; j < jobCount - 1; j++)
+            if(isFg)
             {
-                strcpy(jobs[i].jobName, jobs[i + 1].jobName);
-                jobs[i].pid = jobs[i + 1].pid;
-                jobs[i].num = jobs[i + 1].num;
-            }
+                strcpy(currentJob, jobs[i].jobName);
+                
+                currentID = pid;
 
-            jobCount--;
+                for (int j = i; j < jobCount - 1; j++)
+                {
+                    strcpy(jobs[i].jobName, jobs[i + 1].jobName);
+                    jobs[i].pid = jobs[i + 1].pid;
+                    jobs[i].num = jobs[i + 1].num;
+                }
+
+                jobCount--;
+            }
 
             if (kill(pid, SIGCONT) == -1)
             {
@@ -44,8 +54,11 @@ void fg(int len, char **argv)
                 return;
             }
 
-            int status;
-            while (waitpid(pid, &status, WNOHANG) != pid);
+            if(isFg)
+            {
+                int status;
+                waitpid(pid, &status, WUNTRACED);
+            }
 
             break;
         }

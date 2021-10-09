@@ -1,8 +1,12 @@
 #include "headers.h"
+#include "ls.h"
+#include "main.h"
+#include "colours.h"
 
 void printDetails(char *path, char *dName)
 {
     struct stat details;
+
     if (stat(path, &details) == -1)
         return;
 
@@ -52,11 +56,12 @@ void getFiles(int count, char *directory, int lFlag, int aFlag)
     lstat(directory, &stats);
 
     int file = 1;
+    
     if ((mydir = opendir(directory)) == NULL)
     {
-        if(access(directory, F_OK))
+        if (access(directory, F_OK))
         {
-            printf("%s: Cannot be accessed\n", directory);
+            printf(red "%s: Cannot be accessed\n" reset, directory);
             return;
         }
 
@@ -64,7 +69,7 @@ void getFiles(int count, char *directory, int lFlag, int aFlag)
             file = 0;
     }
 
-    if(file)
+    if (file)
     {
         int block = 0;
         char dName[1000];
@@ -76,7 +81,7 @@ void getFiles(int count, char *directory, int lFlag, int aFlag)
 
             sprintf(dName, "%s/%s", directory, myfile->d_name);
             lstat(dName, &stats);
-            
+
             block += stats.st_blocks;
         }
 
@@ -106,12 +111,11 @@ void getFiles(int count, char *directory, int lFlag, int aFlag)
         closedir(mydir);
     }
 
-    else if(lFlag)
+    else if (lFlag)
         printDetails(directory, directory);
 
     else
         printf("%s\n", directory);
-    
 }
 
 void ls(int len, char **argv)
@@ -123,25 +127,25 @@ void ls(int len, char **argv)
     {
         int length = strlen(argv[i]);
 
-        if(length && argv[i][0] == '-')
+        if (length && argv[i][0] == '-')
         {
-            for(int j = 0; j < length; j++)
+            for (int j = 0; j < length; j++)
             {
-                if(argv[i][j]=='l')
+                if (argv[i][j] == 'l')
                     lFlag = 1;
-                if(argv[i][j]=='a')
+                if (argv[i][j] == 'a')
                     aFlag = 1;
             }
         }
-        
-        else 
+
+        else
         {
-            if(strcmp(argv[i], "~") == 0)
+            if (strcmp(argv[i], "~") == 0)
                 directories[count] = home;
 
             else if (strcmp(argv[i], ""))
                 directories[count] = argv[i];
-                
+
             count++;
         }
     }
@@ -149,7 +153,7 @@ void ls(int len, char **argv)
     if (count == 0)
         directories[0] = ".";
 
-    for(int i = 0; i < count + 1; i++)
+    for (int i = 0; i < count + 1; i++)
     {
         if (i == count && i != 0)
             break;

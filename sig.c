@@ -1,10 +1,13 @@
 #include "headers.h"
+#include "sig.h"
+#include "process.h"
+#include "utils.h"
 #include "colours.h"
 
 void sig(int len, char **argv)
 {
     int flag = 0;
-    if(len != 3)
+    if (len != 3)
     {
         printf(red "sig: Enter 3 arguments\n" reset);
         return;
@@ -12,13 +15,13 @@ void sig(int len, char **argv)
     int inputJobNumber = strToInt(argv[1]);
     int signalNumber = strToInt(argv[2]);
 
-    if(inputJobNumber < 1)
+    if (inputJobNumber < 1)
     {
         printf(red "sig: Invalid job number\n" reset);
         return;
     }
 
-    if(signalNumber < 1 || signalNumber > 31)
+    if (signalNumber < 1 || signalNumber > 31)
     {
         printf(red "sig: Invalid signal number\n" reset);
         return;
@@ -26,10 +29,10 @@ void sig(int len, char **argv)
 
     for (int i = 0; i < jobCount; i++)
     {
-        if(jobs[i].num == inputJobNumber)
+        if (jobs[i].num == inputJobNumber)
         {
             flag = 1;
-            if(kill(jobs[i].pid, signalNumber) < 0)
+            if (kill(jobs[i].pid, signalNumber) < 0)
             {
                 printf(red "sig: Error while killing\n" reset);
                 return;
@@ -38,7 +41,7 @@ void sig(int len, char **argv)
         }
     }
 
-    if(!flag)
+    if (!flag)
     {
         printf(red "sig: No such job\n" reset);
         return;

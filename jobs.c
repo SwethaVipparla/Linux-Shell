@@ -1,4 +1,6 @@
 #include "headers.h"
+#include "jobs.h"
+#include "process.h"
 #include "colours.h"
 
 Jobs newarr[50];
@@ -7,6 +9,7 @@ int compare(const void *a, const void *b)
 {
     Jobs *ja = (Jobs *)a;
     Jobs *jb = (Jobs *)b;
+    
     return strcmp(ja->jobName, jb->jobName);
 }
 
@@ -27,7 +30,7 @@ int setFlags(int len, char **argv)
         }
     }
 
-    else if(len == 3)
+    else if (len == 3)
     {
         if (!strcmp(argv[1], "-r"))
         {
@@ -40,7 +43,6 @@ int setFlags(int len, char **argv)
                 return 0;
             }
         }
-
     }
 
     else if (len > 3)
@@ -52,15 +54,15 @@ int setFlags(int len, char **argv)
 
 void job(int len, char **argv)
 {
-    for(int i = 0; i < jobCount; i++)
+    for (int i = 0; i < jobCount; i++)
         newarr[i] = jobs[i];
-    
+
     qsort(newarr, jobCount, sizeof(Jobs), compare);
 
     char message[1000];
     int flag = 3;
-    
-    if(len > 1)
+
+    if (len > 1)
     {
         if ((flag = setFlags(len, argv)) == 0)
             return;
@@ -89,7 +91,7 @@ void job(int len, char **argv)
         else
             strcpy(status, "Running");
 
-        if (flag == 3 || (flag == 1 && strcmp(status, "Running") == 0 )|| (flag == 2 && strcmp(status, "Stopped") == 0))
+        if (flag == 3 || (flag == 1 && strcmp(status, "Running") == 0) || (flag == 2 && strcmp(status, "Stopped") == 0))
             printf("[%d] %s %s [%d]\n", newarr[i].num, status, newarr[i].jobName, newarr[i].pid);
     }
 }

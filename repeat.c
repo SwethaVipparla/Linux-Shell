@@ -1,26 +1,8 @@
 #include "headers.h"
+#include "repeat.h"
+#include "utils.h"
+#include "commands.h"
 #include "colours.h"
-
-int strToInt(char *str)
-{
-    int num = 0;
-    int n = strlen(str);
-
-    for (int i = 0; i < n; i++)
-    {
-        int converted = str[i] - '0';
-
-        if (converted < 0 || converted > 9)
-            return 0;
-
-        num = (num * 10) + converted;
-    }
-
-    if(num < 0)
-        return 0;
-
-    return num;
-}
 
 void repeat(int len, char **argv)
 {

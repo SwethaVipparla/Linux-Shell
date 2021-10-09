@@ -1,42 +1,17 @@
 #include "headers.h"
-
-void tokenizeCommand(char *token)
-{
-    char *argv[1000], *p;
-    int flag = 0;
-    int stdoutSaved = dup(STDOUT_FILENO), stdinSaved = dup(STDIN_FILENO);
-
-    if(checkPipe(token))
-    {
-        piping(token, stdoutSaved, stdinSaved);
-        return;
-    }
-
-    if(checkRedirection(token))
-        flag = 1;
-
-    p = strtok_r(token, " \t\r", &token);
-    argv[0] = p;
-
-    int len = 1;
-
-    while ((p = strtok_r(NULL, " \t\r", &token)) != NULL)
-    {
-        argv[len] = p;
-        len++;
-    }
-
-    if(flag)
-        len = redirectIO(len, argv);
-
-    if(len)
-        commands(len, argv);
-    else
-        return;
-
-    fileStream(stdoutSaved, STDOUT_FILENO);  
-    fileStream(stdinSaved, STDIN_FILENO);
-}
+#include "commands.h"
+#include "cd.h"
+#include "pwd.h"
+#include "echo.h"
+#include "ls.h"
+#include "repeat.h"
+#include "pinfo.h"
+#include "history.h"
+#include "process.h"
+#include "jobs.h"
+#include "sig.h"
+#include "fgbg.h"
+#include "utils.h"
 
 void commands(int len, char **argv)
 {
@@ -62,7 +37,15 @@ void commands(int len, char **argv)
         history(len, argv);
 
     else if (strcmp(argv[len - 1], "&") == 0 || argv[len - 1][strlen(argv[len - 1]) - 1] == '&')
-        background(len, argv);
+    {
+        if (strcmp(argv[len - 1], "&") == 0)
+            argv[len - 1] = NULL;
+
+        else if (argv[len - 1][strlen(argv[len - 1]) - 1] == '&')
+            argv[len - 1][strlen(argv[len - 1]) - 1] = '\0';
+
+        process(len, argv, 1);
+    }
 
     else if (strcmp(argv[0], "jobs") == 0)
         job(len, argv);
@@ -71,16 +54,16 @@ void commands(int len, char **argv)
         sig(len, argv);
 
     else if (strcmp(argv[0], "fg") == 0)
-        fg(len, argv);
+        fgbg(len, argv, 1);
 
     else if (strcmp(argv[0], "bg") == 0)
-        bg(len, argv);
+        fgbg(len, argv, 0);
 
     else if (strcmp(argv[0], "exit") == 0)
         exit(0);
 
     else
-        foreground(len, argv);
+        process(len, argv, 0);
 
     writeToHistory();
-}   
+}

@@ -1,4 +1,5 @@
 #include "headers.h"
+#include "pwd.h"
 #include "colours.h"
 
 void pwd()

@@ -1,4 +1,6 @@
 #include "headers.h"
+#include "redirection.h"
+#include "utils.h"
 
 int checkRedirection(char *token)
 {
@@ -10,30 +12,15 @@ int checkRedirection(char *token)
 
     if (input != NULL || output != NULL || append != NULL)
         return 1;
-    else 
+    else
         return 0;
-}
-
-int fileStream(int fd, int stream)
-{
-    if(fd < 0)
-    {
-        printf("Error: File not found\n");
-        return 0;
-    }
-    if (dup2(fd, stream) < 0)
-    {
-        printf("Error: Cannot redirect\n");
-        return 0;
-    }
-    close(fd);
 }
 
 int redirectIO(int len, char **argv)
 {
     int newLen = 0;
 
-    for(int i = 0; i < len; i++)
+    for (int i = 0; i < len; i++)
     {
         if (strcmp(argv[i], "<") == 0 && i + 1 < len)
         {
@@ -49,14 +36,14 @@ int redirectIO(int len, char **argv)
             continue;
         }
 
-        else if(strcmp(argv[i], ">>") == 0 && i + 1 < len)
+        else if (strcmp(argv[i], ">>") == 0 && i + 1 < len)
         {
             int fd = open(argv[i++ + 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
             fileStream(fd, STDOUT_FILENO);
             continue;
         }
 
-        else 
+        else
         {
             strcpy(argv[newLen], argv[i]);
             newLen++;
@@ -66,7 +53,7 @@ int redirectIO(int len, char **argv)
         return 0;
     }
 
-    for(int i = newLen; i < len; i++)
+    for (int i = newLen; i < len; i++)
         argv[i] = NULL;
 
     return newLen;

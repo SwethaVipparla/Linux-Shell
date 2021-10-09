@@ -1,4 +1,5 @@
 #include "headers.h"
+#include "echo.h"
 
 void echo(int len, char **argv)
 {

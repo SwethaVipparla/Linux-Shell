@@ -1,21 +1,21 @@
-3638
-3620
-3621
-sleep &
-sleep 10
-sleep 10
-sleep 10
+3744
+fg 1
 jobs
-sleep 10
-vim &
-vim &
-sleep 5
+bg 2
 jobs
-vim &
-sleep 1000
 jobs
-sleep 10
-sleep10
-sleep 10
-3618
-3619
+gedit &
+fg 3
+jobs
+bg 4
+jobs
+bg 3
+sleep 100 &
+jobs
+fg 1
+jobs
+cd
+cd -
+ls
+ls -al
+sleep 100 &

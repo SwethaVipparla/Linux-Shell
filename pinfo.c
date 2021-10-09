@@ -1,9 +1,11 @@
 #include "headers.h"
+#include "pinfo.h"
+#include "main.h"
+#include "utils.h"
 #include "colours.h"
 
 void pinfo(int len, char **argv)
 {
-
     pid_t pid;
 
     if (len == 1)
@@ -34,11 +36,12 @@ void pinfo(int len, char **argv)
 
     char temp[100];
     char flag1[1000], flag2[1000];
+
     fscanf(fp, "%s %s %s %s %s %s %s %s", flag1, temp, status, temp, temp, temp, temp, flag2);
 
     int fgFlag = strcmp(flag1, flag2);
-
     char mpath[1000];
+    
     sprintf(mpath, "/proc/%d/statm", pid);
     fp = fopen(mpath, "r");
 

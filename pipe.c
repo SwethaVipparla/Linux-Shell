@@ -1,10 +1,13 @@
 #include "headers.h"
+#include "pipe.h"
+#include "utils.h"
+#include "colours.h"
 
 int checkPipe(char *token)
 {
     char *pipe;
     pipe = strstr(token, "|");
-    
+
     if (pipe)
         return 1;
 
@@ -26,11 +29,11 @@ void piping(char *token, int stdoutSaved, int stdinSaved)
 
     int fd[2], i = 0;
 
-    while(i < len - 1)
+    while (i < len - 1)
     {
         if (pipe(fd) < 0)
         {
-            perror("Pipe error");
+            perror(red "Pipe error" reset);
             return;
         }
 

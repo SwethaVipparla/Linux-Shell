@@ -1,7 +1,8 @@
 #include "headers.h"
+#include "history.h"
+#include "main.h"
+#include "utils.h"
 #include "colours.h"
-
-#include "headers.h"
 
 char entries[20][1000];
 char historyFile[2000];
