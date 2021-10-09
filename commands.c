@@ -11,6 +11,7 @@
 #include "jobs.h"
 #include "sig.h"
 #include "fgbg.h"
+#include "replay.h"
 #include "utils.h"
 
 void commands(int len, char **argv)
@@ -58,6 +59,9 @@ void commands(int len, char **argv)
 
     else if (strcmp(argv[0], "bg") == 0)
         fgbg(len, argv, 0);
+
+    else if (strcmp(argv[0], "replay") == 0)
+        replay(len, argv);
 
     else if (strcmp(argv[0], "exit") == 0)
         exit(0);
