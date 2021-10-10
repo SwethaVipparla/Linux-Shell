@@ -12,6 +12,7 @@
 #include "Commands/sig.h"
 #include "Commands/fgbg.h"
 #include "Commands/replay.h"
+#include "Commands/baywatch.h"
 #include "utils.h"
 
 void commands(int len, char **argv)
@@ -62,6 +63,9 @@ void commands(int len, char **argv)
 
     else if (strcmp(argv[0], "replay") == 0)
         replay(len, argv);
+
+    else if (strcmp(argv[0], "baywatch") == 0)
+        baywatch(len, argv);
 
     else if (strcmp(argv[0], "exit") == 0)
         exit(0);

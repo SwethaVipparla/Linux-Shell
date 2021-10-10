@@ -1,21 +1,21 @@
-3996
-sleep 10 &
+95
 
+baywatch -n 1 dirty
 
-sleep 1000
-jobs
-fg 2
-jobs
-sleep 50 
-jobs
-pinfo
-clear
-vim
+baywatch -n 1 interrupt
+baywatch -n 1 newborn
+baywatch -n 1 newborn
 
+baywatch -n 1 dirty
 
-jobs
-vim
-jobs
-clear
-vim
-exit
+baywatch -n 1 interrupt
+baywatch -n 1 interrupt
+
+baywatch -n 1 dirty
+
+baywatch -n 1 newborn
+
+baywatch -n 1 dirty
+
+baywatch -n 1 newborn
+baywatch -n 1 newborn
