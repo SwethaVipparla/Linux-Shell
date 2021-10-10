@@ -55,6 +55,7 @@ int main()
 
         addCommandToHistory(input);
         tokenize(input);
+        printf("\r");
 
         free(input);
     }

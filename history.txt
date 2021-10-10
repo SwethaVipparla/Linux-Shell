@@ -1,21 +1,21 @@
-3869
-vim a
-slee 5
-sleep 5
-sleep 5
-vim a
-gedit a
-clear
-clear -x
-sleep 5
-clear
-ls -al
-sleep 5
+3979
+sleep 100 &
+sleep 100 &
+sleep 100 &
+
+
+jobs
 sleep 10 &
-fg 2
-sleep 5
+jobs
+sleep 100 
+jobs
+sleep 100 &
+
+
+
+replay -interval 1 -command echo hi -period 2
+sleep 10 &
+jobs
 clear
-ls -al
 vim
-ls -al
-vim
+sleep 100 &

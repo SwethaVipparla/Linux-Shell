@@ -18,16 +18,19 @@ void process(int len, char **argv, int isBg)
     if (pid < 0)
         perror(red "Error: Fork Failure\n" reset);
 
-    else if (pid == 0)
-    {
-        setpgid(0, 0);
+    if(pid == 0)
+    {   
+        if(!isBg)
+            argv[len] = NULL;
+        else
+            setpgid(0, 0);
 
         if (execvp(argv[0], argv) < 0)
             printf(red "Command not found" reset ": " bold "%s\n" noBold, argv[0]);
 
         return;
     }
-
+    
     else
     {
         if (!isBg)
@@ -35,7 +38,7 @@ void process(int len, char **argv, int isBg)
             currentID = pid;
             strcpy(currentJob, argv[0]);
 
-            for (int i = 1; i < len - 1; i++)
+            for (int i = 1; i < len; i++)
             {
                 strcat(currentJob, " ");
                 strcat(currentJob, argv[i]);
@@ -47,6 +50,7 @@ void process(int len, char **argv, int isBg)
 
         else
         {
+
             strcpy(jobs[jobCount].jobName, argv[0]);
 
             for (int i = 1; i < len - 1; i++)

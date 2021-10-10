@@ -17,6 +17,7 @@ void ctrlz(int sig)
         if (kill(currentID, SIGTSTP) == -1)
         {
             perror(red "kill" reset);
+            prompt();
             return;
         }
 
@@ -24,8 +25,6 @@ void ctrlz(int sig)
         strcpy(jobs[jobCount].jobName, currentJob);
         jobs[jobCount].num = ++num;
         jobCount++;
-
-        printf("\r");
     }
 
     return;
@@ -42,7 +41,6 @@ void ctrlc(int sig)
     {
         if (kill(currentID, SIGINT) == -1)
             perror(red "kill" reset);
-
         printf("\r");
     }
 
