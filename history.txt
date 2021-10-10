@@ -1,21 +1,21 @@
-3979
-sleep 100 &
-sleep 100 &
-sleep 100 &
-
-
-jobs
+3996
 sleep 10 &
+
+
+sleep 1000
 jobs
-sleep 100 
+fg 2
 jobs
-sleep 100 &
+sleep 50 
+jobs
+pinfo
+clear
+vim
 
 
-
-replay -interval 1 -command echo hi -period 2
-sleep 10 &
+jobs
+vim
 jobs
 clear
 vim
-sleep 100 &
+exit

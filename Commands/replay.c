@@ -76,6 +76,7 @@ void replay(int len, char **argv)
     }
 
     int timesExecute = times[1] / times[0];
+
     for (int i = 0; i < timesExecute; i++)
     {
         char *commandCopy[1000];
