@@ -1,4 +1,4 @@
-# Magnush 
+# Magnush Linux Shell
 
 <br>
 Magnush is the clone of the Bash shell. It is written in C, and supports various features that we can see in a traditional Bash shell. 
